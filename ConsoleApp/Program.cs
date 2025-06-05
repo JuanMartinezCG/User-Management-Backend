@@ -75,6 +75,7 @@ namespace UserManagementSystem
                         }
 
                         if (age < 0) throw new Exception("La Edad no puede ser negativa");
+                        newUser.Age = age; // Asigna la edad al usuario
 
                         Console.Write("Email: ");       // Asigna el Email.
                         newUser.Email = Console.ReadLine();
