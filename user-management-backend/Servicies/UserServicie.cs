@@ -1,7 +1,8 @@
 ﻿using user_management_backend.DTOs;
 using user_management_backend.Repository;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore; // si usas EF Core
+using Microsoft.EntityFrameworkCore;
+using user_management_backend.Models; // si usas EF Core
 
 
 namespace user_management_backend.Servicies
@@ -23,9 +24,44 @@ namespace user_management_backend.Servicies
             {
                 Id = user.Id,
                 Name = user.Name,
+                Age = user.Age,
                 Email = user.Email,
                 // Agregar otros campos según sea necesario
             });
+        }
+
+        public async Task AddUserAsync(UserDto userDto)
+        {
+            var user = new User
+            {
+                Name = userDto.Name,
+                Age = userDto.Age,
+                Email = userDto.Email
+            };
+
+            // Si el repositorio es síncrono, no uses await
+            _userRepository.AddUser(user);
+        }
+
+        public async Task<UserDto?> GetById(int id)
+        {
+            if (id <= 0)
+                throw new ArgumentException("ID de usuario no valido");
+
+            var user = await _userRepository.GetById(id);
+
+            if (user == null)
+                throw new KeyNotFoundException("Usuario no encontrado");
+
+            return new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Age = user.Age,
+                Email = user.Email
+            };
+
+
         }
     }
 }

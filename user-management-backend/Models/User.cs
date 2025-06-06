@@ -8,7 +8,7 @@ namespace user_management_backend.Models
     {
         [Key] // Clave primaria
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-incremental
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio")]
         [StringLength(100, ErrorMessage = "El nombre no puede exceder 100 caracteres")] // No puede estar vacío

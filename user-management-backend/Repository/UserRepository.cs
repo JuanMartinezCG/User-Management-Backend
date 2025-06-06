@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using user_management_backend.Data;
 using user_management_backend.Models;
 
@@ -16,5 +17,18 @@ namespace user_management_backend.Repository
         {
             return await _db.Users.ToListAsync(); // Devuelve una lista de todos los usuarios en la base de datos
         }
+        public async void AddUser(User user) // Método para agregar un nuevo usuario
+        {
+            _db.Users.Add(user); // Agrega el usuario al contexto de la base de datos
+            _db.SaveChanges(); // Guarda los cambios en la base de datos
+        }
+
+        public async Task<User?> GetById(int id) 
+        {
+            return await _db.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == id);
+        }
+
     }
 }
