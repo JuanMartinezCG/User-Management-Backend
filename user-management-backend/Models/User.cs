@@ -20,5 +20,7 @@ namespace user_management_backend.Models
         [Required(ErrorMessage = "El email es obligatorio")]
         [EmailAddress(ErrorMessage = "El email no tiene un formato válido")] // Valida formato de email
         public string Email { get; set; }
+
+
     }
 }

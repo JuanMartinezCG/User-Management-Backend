@@ -23,11 +23,19 @@ namespace user_management_backend.Repository
             _db.SaveChanges(); // Guarda los cambios en la base de datos
         }
 
-        public async Task<User?> GetById(int id) 
+        public async Task<User?> GetById(int id)
         {
             return await _db.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task DeleteById(User user)
+        {
+             _db.Users
+                .Remove(user);
+
+            await _db.SaveChangesAsync(); // Guarda los cambios en la base de datos
         }
 
     }

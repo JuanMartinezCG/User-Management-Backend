@@ -58,6 +58,30 @@ namespace user_management_backend.controllers
             }
         }
 
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteById(int id)
+        {
+            try
+            {
+                await _userServicie.DeleteById(id);
+                return NoContent(); // 204 No Content
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "ID inválido proporcionado");
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                _logger.LogWarning(ex, "Usuario no encontrado");
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al eliminar usuario");
+                return StatusCode(500, ex.Message);
+            }
+        }
 
     }
 }

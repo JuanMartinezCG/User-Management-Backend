@@ -43,7 +43,7 @@ namespace user_management_backend.Servicies
             _userRepository.AddUser(user);
         }
 
-        public async Task<UserDto?> GetById(int id)
+        public async Task<UserDto?> GetById(int id) // buscar por ID un usuario
         {
             if (id <= 0)
                 throw new ArgumentException("ID de usuario no valido");
@@ -60,8 +60,22 @@ namespace user_management_backend.Servicies
                 Age = user.Age,
                 Email = user.Email
             };
-
-
         }
+
+        public async Task DeleteById(int id) // Eliminar un usuario por ID
+        {
+            if (id <= 0)
+                throw new ArgumentException("ID de usuario no valido");
+
+            var UserDelete = await _userRepository.GetById(id);
+
+            if (UserDelete == null)
+                throw new ArgumentException("ID de usuario no valido");
+
+            await _userRepository.DeleteById(UserDelete);
+        }
+
+
+
     }
-}
+} // Fin de la clase UserServicie

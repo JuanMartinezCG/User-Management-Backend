@@ -7,5 +7,6 @@ namespace user_management_backend.Repository
         Task<IEnumerable<User>> GetAllUsersAsync(); // Método para obtener todos los usuarios
         void AddUser(User user); // Método para agregar un nuevo usuario
         Task<User?> GetById(int id); // Método para obtener un usuario por su ID
+        Task DeleteById(User user); // Método para Eliminar un usuario por su ID
     }
 }
