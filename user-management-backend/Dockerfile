@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copiar archivos del proyecto
-COPY ./user_management_backend.csproj ./
+COPY ./user-management-backend.csproj ./
 RUN dotnet restore
 
 # Copiar todo el código y publicar
