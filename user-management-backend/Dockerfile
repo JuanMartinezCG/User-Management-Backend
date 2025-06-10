@@ -1,6 +1,6 @@
 # Etapa 1: Compilación
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /app
 
 # Copiar archivos del proyecto
 #COPY . ./
