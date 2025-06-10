@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=build /app/out .
 
 # Ejecutar la app
-ENTRYPOINT ["dotnet", "user-management-backend.dll"]
+ENTRYPOINT ["dotnet", "./app/user-management-backend.dll"]
