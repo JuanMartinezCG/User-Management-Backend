@@ -19,7 +19,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "user-management-backend.dll"]
 
-
+ 
 
 # Etapa 1: Compilación
 #FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
