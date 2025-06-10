@@ -1,4 +1,4 @@
-# Etapa 1: Compilación
+# Etapa 1: CompilaciÃ³n
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
@@ -6,14 +6,14 @@ WORKDIR /app
 COPY . ./
 RUN dotnet restore
 
-# Copiar todo el código y publicar
+# Copiar todo el cÃ³digo y publicar
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Etapa 2: Ejecución
+# Etapa 2: EjecuciÃ³n
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
 # Ejecutar la app
-ENTRYPOINT ["dotnet", "user-management-backend.dll"]
+ENTRYPOINT ["dotnet", "user_management_backend.dll"]
