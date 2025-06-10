@@ -1,23 +1,3 @@
-# Etapa 1: Compilación
-#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-#WORKDIR /app
-
-# Copiar archivos del proyecto
-#COPY . ./
-#RUN dotnet restore
-
-# Copiar todo el código y publicar
-#COPY . ./
-#RUN dotnet publish -c Release -o out
-
-# Etapa 2: Ejecución
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-#WORKDIR /app
-#COPY --from=build /app/out .
-
-# Ejecutar la app
-#ENTRYPOINT ["dotnet", "./app/user-management-backend.dll"]
-
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 USER $APP_UID
 WORKDIR /app
@@ -38,3 +18,25 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "user-management-backend.dll"]
+
+
+
+# Etapa 1: Compilación
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /app
+
+# Copiar archivos del proyecto
+#COPY . ./
+#RUN dotnet restore
+
+# Copiar todo el código y publicar
+#COPY . ./
+#RUN dotnet publish -c Release -o out
+
+# Etapa 2: Ejecución
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+#WORKDIR /app
+#COPY --from=build /app/out .
+
+# Ejecutar la app
+#ENTRYPOINT ["dotnet", "./app/user-management-backend.dll"]
