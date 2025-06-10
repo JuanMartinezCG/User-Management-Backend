@@ -17,7 +17,7 @@ RUN dotnet publish "user-management-backend.csproj" -c $BUILD_CONFIGURATION -o /
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "user-management-backend.dll"]
+ENTRYPOINT ["dotnet", "./app/user-management-backend.dll"]
 
 
 
